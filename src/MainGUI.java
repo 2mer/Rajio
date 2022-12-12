@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MainGUI extends JFrame {
     private JPanel content;
@@ -88,8 +89,6 @@ public class MainGUI extends JFrame {
         Line.Info playbackLine = new Line.Info(SourceDataLine.class);
         mixers = filterDevices(playbackLine);
 
-//        var names = mixers.stream().map(Mixer.Info::getName).toArray(String[]::new);
-
         comboBox1 = new JComboBox<>(mixers.toArray());
 
     }
@@ -153,9 +152,9 @@ public class MainGUI extends JFrame {
         return Arrays
                 .stream(AudioSystem.getMixerInfo())
                 .filter(info -> {
-                    var mixer = AudioSystem.getMixer(info);
+                    Mixer mixer = AudioSystem.getMixer(info);
                     return mixer.isLineSupported(supportedLine);
                 })
-                .toList();
+                .collect(Collectors.toList());
     }
 }
