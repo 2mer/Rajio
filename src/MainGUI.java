@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -94,7 +95,7 @@ public class MainGUI extends JFrame {
     }
 
     private void playClip() throws UnsupportedAudioFileException, IOException, InterruptedException {
-        AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MainGUI.class.getClassLoader().getResourceAsStream("sounds/gunag.wav")));
+        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(MainGUI.class.getClassLoader().getResourceAsStream("sounds/gunag.wav"))));
         Mixer.Info selectedMixer = mixers.get(comboBox1.getSelectedIndex());
 
         try
@@ -119,7 +120,7 @@ public class MainGUI extends JFrame {
     }
 
     private void loopClip() throws UnsupportedAudioFileException, IOException, InterruptedException {
-        AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MainGUI.class.getClassLoader().getResourceAsStream("sounds/gunag.wav")));
+        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(MainGUI.class.getClassLoader().getResourceAsStream("sounds/gunag.wav"))));
         Mixer.Info selectedMixer = mixers.get(comboBox1.getSelectedIndex());
 
         try
